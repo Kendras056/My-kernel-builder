@@ -119,7 +119,7 @@ LOG_DEBUG=1
 
 # Check if we are using a dedicated CI ( Continuous Integration ), and
 # set KBUILD_BUILD_VERSION and KBUILD_BUILD_HOST and CI_BRANCH
-if [ $JENIS = "CAF" ]
+if [ JENIS = "CAF" ]
   then
   LINUXS= "4.4.205"
   else 
