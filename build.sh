@@ -57,7 +57,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 # Kernel Variant
 NAMA=Signature
 JENIS=CAF
-VARIAN=flameFox
+VARIAN=FlameFox
 # Build Type
 BUILD_TYPE="Nightly"
 
