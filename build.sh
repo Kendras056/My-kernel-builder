@@ -58,12 +58,6 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 NAMA=Signature
 
 JENIS=CAF
-if [ $JENIS =CAF ]
-  then
-  LINUXS=4.4.205
-  else 
-  LINUXS=$(make kernelversion)
-  fi
 
 VARIAN=FlameFox
 # Build Type
@@ -129,7 +123,7 @@ LOG_DEBUG=1
 # set KBUILD_BUILD_VERSION and KBUILD_BUILD_HOST and CI_BRANCH
 
 #Check Kernel Version
-LINUXVER=$LINUXS
+LINUXVER=$(make kernelversion)
 
 # Set a commit head
 COMMIT_HEAD=$(git log --pretty=format:'%s' -n1)
