@@ -57,9 +57,9 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 # Kernel Variant
 NAMA=Signature
 
-JENIS=EAS
+JENIS=HMP
 
-VARIAN=BOT
+VARIAN=Phoenix
 # Build Type
 BUILD_TYPE="Nightly"
 
