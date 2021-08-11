@@ -59,7 +59,7 @@ NAMA=Signature
 
 JENIS=EAS
 
-VARIAN=ROBOT
+VARIAN=CAF
 # Build Type
 BUILD_TYPE="Nightly"
 
