@@ -65,7 +65,7 @@ BUILD_TYPE="Nightly"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc'
-COMPILER=clang
+COMPILER=gcc
 
 # Kernel is LTO
 LTO=0
@@ -143,8 +143,8 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "gcc" ]
 	then
 		msg "|| Cloning GCC  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-android-4.9 $KERNEL_DIR/gcc64
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-androideabi-4.9 $KERNEL_DIR/gcc32
+		git clone --depth=1 https://github.com/KudProject/aarch64-linux-android-4.9 -b master $KERNEL_DIR/gcc64
+		git clone --depth=1 https://github.com/KudProject/arm-linux-androideabi-4.9 -b master $KERNEL_DIR/gcc32
 
 	elif [ $COMPILER = "clangxgcc" ]
 	then
@@ -189,7 +189,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="Nobody"
     export KBUILD_BUILD_HOST="Unknown"
-    export KBUILD_BUILD_VERSION="1"
+    export KBUILD_BUILD_VERSION="20"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
