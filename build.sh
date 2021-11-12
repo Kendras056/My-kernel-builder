@@ -56,8 +56,8 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=TheOneMemory
-JENIS=Like
-VARIAN=OEM
+JENIS=Kernel
+VARIAN=X00TD
 
 # Build Type
 BUILD_TYPE="Nightly"
@@ -196,7 +196,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="queen"
     export KBUILD_BUILD_HOST="18ded16aaef9"
-    export KBUILD_BUILD_VERSION="3"
+    export KBUILD_BUILD_VERSION="10"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
