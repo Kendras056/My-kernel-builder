@@ -57,15 +57,15 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=TheOneMemory
-JENIS=Kernel
-VARIAN=HMP
+JENIS=HMP
+VARIAN=Overclock
 
 # Build Type
 BUILD_TYPE="Nightly"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49'
-COMPILER=gcc49
+COMPILER=gcc
 
 # Message on anykernel when installation
 MESSAGE="don't blame me if u get poor battery backup or weak performance . i'm not responsible . Do with Your Own Risk."
@@ -197,7 +197,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="queen"
     export KBUILD_BUILD_HOST="18ded16aaef9"
-    export KBUILD_BUILD_VERSION="4"
+    export KBUILD_BUILD_VERSION="5"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
@@ -396,7 +396,7 @@ gen_zip() {
 	cd AnyKernel3 || exit
         cp -af anykernel-real.sh anykernel.sh
 	sed -i "s/kernel.string=.*/kernel.string=$NAMA/g" anykernel.sh
-	sed -i "s/kernel.for=.*/kernel.for=$JENIS/g" anykernel.sh
+	sed -i "s/kernel.for=.*/kernel.for=$VARIAN/g" anykernel.sh
 	sed -i "s/kernel.compiler=.*/kernel.compiler=$KBUILD_COMPILER_STRING/g" anykernel.sh
 	sed -i "s/kernel.made=.*/kernel.made=$KBUILD_BUILD_USER@$KBUILD_BUILD_HOST/g" anykernel.sh
 	sed -i "s/kernel.version=.*/kernel.version=$LINUXVER/g" anykernel.sh
