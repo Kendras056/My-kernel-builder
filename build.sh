@@ -64,7 +64,7 @@ BUILD_TYPE="Nightly"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49'
-COMPILER=gcc49
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="don't blame me if u get poor battery backup or weak performance . i'm not responsible . Do with Your Own Risk."
@@ -394,7 +394,7 @@ gen_zip() {
 	fi
 	cd AnyKernel3 || exit
         cp -af anykernel-real.sh anykernel.sh
-	sed -i "s/kernel.string=.*/kernel.string=$NAMA-$VARIAN/g" anykernel.sh
+	sed -i "s/kernel.string=.*/kernel.string=$NAMA/g" anykernel.sh
 	sed -i "s/kernel.for=.*/kernel.for=$JENIS/g" anykernel.sh
 	sed -i "s/kernel.compiler=.*/kernel.compiler=$KBUILD_COMPILER_STRING/g" anykernel.sh
 	sed -i "s/kernel.made=.*/kernel.made=$KBUILD_BUILD_USER@$KBUILD_BUILD_HOST/g" anykernel.sh
