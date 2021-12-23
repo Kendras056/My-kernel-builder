@@ -57,7 +57,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=TheOneMemory
-JENIS=Lovia
+JENIS=Eren
 VARIAN=LV
 
 # Build Type
