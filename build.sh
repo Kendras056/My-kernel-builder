@@ -57,7 +57,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=TheOneMemory
-JENIS=Eren
+JENIS=Sevyn
 VARIAN=EAS
 
 # Build Type
@@ -197,7 +197,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="queen"
     export KBUILD_BUILD_HOST="18ded16aaef9"
-    export KBUILD_BUILD_VERSION="1"
+    export KBUILD_BUILD_VERSION="2"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
