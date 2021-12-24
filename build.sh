@@ -57,7 +57,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=TheOneMemory
-JENIS=Eren
+JENIS=Sevyn
 VARIAN=EAS
 
 # Build Type
