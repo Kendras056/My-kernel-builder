@@ -58,7 +58,8 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 # Kernel Variant
 NAMA=EW
 JENIS=NLV
-VARIAN=HMPxOC
+VARIAN=HMP
+ANU=Zeppelin
 
 # Build Type
 BUILD_TYPE="Nightly"
@@ -141,7 +142,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	if [ $COMPILER = "clang" ]
 	then
 		msg "|| Cloning toolchain ||"
-		git clone --depth=1 https://github.com/Kneba/venom-clang -b master clang
+		git clone --depth=1 https://github.com/Kneba/venom-clang.git -b master clang
 
 	elif [ $COMPILER = "gcc49" ]
 	then
@@ -186,7 +187,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 # Function to replace defconfig versioning
 setversioning() {
     # For staging branch
-    KERNELNAME="$NAMA-$VARIAN-$JENIS-$LINUXVER"
+    KERNELNAME="$NAMA-$JENIS-$VARIAN-$ANU-$LINUXVER"
     # Export our new localversion and zipnames
     export KERNELNAME
     export ZIPNAME="$KERNELNAME.zip"
@@ -207,14 +208,17 @@ exports() {
 		PATH=$TC_DIR/bin/:$PATH
 		LLD_VER="$("$TC_DIR"/bin/ld.lld --version | head -n 1)"
 		export KBUILD_COMPILER_STRING="$KBUILD_COMPILER_STRING with $LLD_VER"
+
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 		PATH=$TC_DIR/bin:$GCC64_DIR/bin:$GCC32_DIR/bin:/usr/bin:$PATH
+
 	elif [ $COMPILER = "gcc49" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-android-gcc --version | head -n 1)
 		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
+
 	elif [ $COMPILER = "gcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-none-linux-gnu-gcc --version | head -n 1)
@@ -330,7 +334,7 @@ build_kernel() {
 	if [ $COMPILER = "clang" ]
 	then
 		make -j"$PROCS" O=out \
-				CC=clang \
+		        CC=clang \
 				CROSS_COMPILE=aarch64-linux-gnu- \
 				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 				AR=llvm-ar \
@@ -354,7 +358,7 @@ build_kernel() {
 		make -j"$PROCS"  O=out \
 				CC=clang \
 				CROSS_COMPILE=aarch64-linux-gnu- \
-				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+					CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 				AR=llvm-ar \
 				NM=llvm-nm \
 				OBJCOPY=llvm-objcopy \
@@ -374,7 +378,7 @@ build_kernel() {
 				msg "|| Building DTBO ||"
 				tg_post_msg "<code>Building DTBO..</code>"
 				python2 "$KERNEL_DIR/scripts/ufdt/libufdt/utils/src/mkdtboimg.py" \
-					create "$KERNEL_DIR/out/arch/arm64/boot/dtbo.img" --page_size=4096 "$KERNEL_DIR/out/arch/arm64/boot/dts/$DTBO_PATH"
+				create "$KERNEL_DIR/out/arch/arm64/boot/dtbo.img" --page_size=4096 "$KERNEL_DIR/out/arch/arm64/boot/dts/$DTBO_PATH"
 			fi
 				gen_zip
 			else
@@ -396,12 +400,12 @@ gen_zip() {
 		mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
 	fi
 	cd AnyKernel3 || exit
-        cp -af anykernel-real.sh anykernel.sh
-	sed -i "s/kernel.string=.*/kernel.string=$NAMA/g" anykernel.sh
+	cp -af anykernel-real.sh anykernel.sh
+	sed -i "s/kernel.string=.*/kernel.string=$NAMA-$ANU/g" anykernel.sh
 	sed -i "s/kernel.for=.*/kernel.for=$VARIAN/g" anykernel.sh
 	sed -i "s/kernel.compiler=.*/kernel.compiler=$KBUILD_COMPILER_STRING/g" anykernel.sh
 	sed -i "s/kernel.made=.*/kernel.made=Tiktod/g" anykernel.sh
-	sed -i "s/kernel.version=.*/kernel.version=$JENIS-$LINUXVER/g" anykernel.sh
+	sed -i "s/kernel.version=.*/kernel.version=$LINUXVER/g" anykernel.sh
 	sed -i "s/message.word=.*/message.word=$MESSAGE/g" anykernel.sh
 	sed -i "s/build.date=.*/build.date=$DATE2/g" anykernel.sh
 
@@ -432,7 +436,7 @@ gen_zip() {
         <b>🆑 Changelog: </b>
         - <code>$COMMIT_HEAD</code>
         <b></b>
-        #$NAMA #$JENIS #$VARIAN"
+        #$NAMA #$JENIS #$VARIAN #$ANU"
 
 	cd ..
 }
