@@ -196,8 +196,8 @@ setversioning() {
 
 exports() {
 	export KBUILD_BUILD_USER="queen"
-    export KBUILD_BUILD_HOST="18ded16aaef9"
-    export KBUILD_BUILD_VERSION="1"
+	export KBUILD_BUILD_HOST="18ded16aaef9"
+	export KBUILD_BUILD_VERSION="1"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
@@ -330,37 +330,37 @@ build_kernel() {
 	if [ $COMPILER = "clang" ]
 	then
 		make -j"$PROCS" O=out \
-				    CC=clang \
-				    CROSS_COMPILE=aarch64-linux-gnu- \
-				    CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-				    AR=llvm-ar \
-				    NM=llvm-nm \
-				    OBJCOPY=llvm-objcopy \
-				    OBJDUMP=llvm-objdump \
-				    CLANG_TRIPLE=aarch64-linux-gnu- \
-				    STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
+				CC=clang \
+				CROSS_COMPILE=aarch64-linux-gnu- \
+				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+				AR=llvm-ar \
+				NM=llvm-nm \
+				OBJCOPY=llvm-objcopy \
+				OBJDUMP=llvm-objdump \
+				CLANG_TRIPLE=aarch64-linux-gnu- \
+				STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc49" ]
 	then
 		make -j"$PROCS" O=out \
-				    CROSS_COMPILE_ARM32=arm-linux-androideabi- \
-				    CROSS_COMPILE=aarch64-linux-android- "${MAKE[@]}" 2>&1 | tee build.log
+				CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+				CROSS_COMPILE=aarch64-linux-android- "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc" ]
 	then
 		make -j"$PROCS" O=out \
-				    CROSS_COMPILE_ARM32=arm-none-linux-gnueabihf- \
-				    CROSS_COMPILE=aarch64-none-linux-gnu- "${MAKE[@]}" 2>&1 | tee build.log
+				CROSS_COMPILE_ARM32=arm-none-linux-gnueabihf- \
+				CROSS_COMPILE=aarch64-none-linux-gnu- "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		make -j"$PROCS"  O=out \
-				    CC=clang \
-				    CROSS_COMPILE=aarch64-linux-gnu- \
-				    CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-				    AR=llvm-ar \
-				    NM=llvm-nm \
-				    OBJCOPY=llvm-objcopy \
-				    OBJDUMP=llvm-objdump \
-				    CLANG_TRIPLE=aarch64-linux-gnu- \
-				    STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
+				CC=clang \
+				CROSS_COMPILE=aarch64-linux-gnu- \
+				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+				AR=llvm-ar \
+				NM=llvm-nm \
+				OBJCOPY=llvm-objcopy \
+				OBJDUMP=llvm-objdump \
+				CLANG_TRIPLE=aarch64-linux-gnu- \
+				STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
 	fi
 
 		BUILD_END=$(date +"%s")
