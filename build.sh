@@ -57,8 +57,8 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=EW
-JENIS=PRIVATE
-VARIAN=HMP
+JENIS=NLV
+VARIAN=HMPxOC
 
 # Build Type
 BUILD_TYPE="Nightly"
@@ -172,7 +172,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		GCC32_DIR=$KERNEL_DIR/gcc32
 
 	msg "|| Cloning Anykernel ||"
-        git clone https://github.com/HoleDroid/AnyKernel3.git -b main AnyKernel3
+        git clone https://github.com/Tiktodz/AnyKernel3.git -b main AnyKernel3
 
 	if [ $BUILD_DTBO = 1 ]
 	then
@@ -186,7 +186,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 # Function to replace defconfig versioning
 setversioning() {
     # For staging branch
-    KERNELNAME="$NAMA-$JENIS-$DATE"
+    KERNELNAME="$NAMA-$VARIAN-$JENIS-$LINUXVER"
     # Export our new localversion and zipnames
     export KERNELNAME
     export ZIPNAME="$KERNELNAME.zip"
@@ -197,7 +197,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="queen"
     export KBUILD_BUILD_HOST="18ded16aaef9"
-    export KBUILD_BUILD_VERSION="1550"
+    export KBUILD_BUILD_VERSION="1"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
@@ -330,36 +330,36 @@ build_kernel() {
 	if [ $COMPILER = "clang" ]
 	then
 		make -j"$PROCS" O=out \
-		        CC=clang \
-				CROSS_COMPILE=aarch64-linux-gnu- \
-				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-				AR=llvm-ar \
-                NM=llvm-nm \
-                OBJCOPY=llvm-objcopy \
-                OBJDUMP=llvm-objdump \
-                CLANG_TRIPLE=aarch64-linux-gnu- \
-				STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
+				    CC=clang \
+				    CROSS_COMPILE=aarch64-linux-gnu- \
+				    CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+				    AR=llvm-ar \
+				    NM=llvm-nm \
+				    OBJCOPY=llvm-objcopy \
+				    OBJDUMP=llvm-objdump \
+				    CLANG_TRIPLE=aarch64-linux-gnu- \
+				    STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc49" ]
 	then
 		make -j"$PROCS" O=out \
-				CROSS_COMPILE_ARM32=arm-linux-androideabi- \
-				CROSS_COMPILE=aarch64-linux-android- "${MAKE[@]}" 2>&1 | tee build.log
+				    CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+				    CROSS_COMPILE=aarch64-linux-android- "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc" ]
 	then
 		make -j"$PROCS" O=out \
-				CROSS_COMPILE_ARM32=arm-none-linux-gnueabihf- \
-				CROSS_COMPILE=aarch64-none-linux-gnu- "${MAKE[@]}" 2>&1 | tee build.log
+				    CROSS_COMPILE_ARM32=arm-none-linux-gnueabihf- \
+				    CROSS_COMPILE=aarch64-none-linux-gnu- "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		make -j"$PROCS"  O=out \
-					CC=clang \
-					CROSS_COMPILE=aarch64-linux-gnu- \
-					CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-					AR=llvm-ar \
-                    NM=llvm-nm \
-                    OBJCOPY=llvm-objcopy \
-                    OBJDUMP=llvm-objdump \
-                    CLANG_TRIPLE=aarch64-linux-gnu- \
+				    CC=clang \
+				    CROSS_COMPILE=aarch64-linux-gnu- \
+				    CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+				    AR=llvm-ar \
+				    NM=llvm-nm \
+				    OBJCOPY=llvm-objcopy \
+				    OBJDUMP=llvm-objdump \
+				    CLANG_TRIPLE=aarch64-linux-gnu- \
 				    STRIP=llvm-strip "${MAKE[@]}" 2>&1 | tee build.log
 	fi
 
@@ -400,11 +400,10 @@ gen_zip() {
 	sed -i "s/kernel.string=.*/kernel.string=$NAMA/g" anykernel.sh
 	sed -i "s/kernel.for=.*/kernel.for=$VARIAN/g" anykernel.sh
 	sed -i "s/kernel.compiler=.*/kernel.compiler=$KBUILD_COMPILER_STRING/g" anykernel.sh
-	sed -i "s/kernel.made=.*/kernel.made=$KBUILD_BUILD_USER@$KBUILD_BUILD_HOST/g" anykernel.sh
-	sed -i "s/kernel.version=.*/kernel.version=$LINUXVER/g" anykernel.sh
+	sed -i "s/kernel.made=.*/kernel.made=Tiktod/g" anykernel.sh
+	sed -i "s/kernel.version=.*/kernel.version=$JENIS-$LINUXVER/g" anykernel.sh
 	sed -i "s/message.word=.*/message.word=$MESSAGE/g" anykernel.sh
 	sed -i "s/build.date=.*/build.date=$DATE2/g" anykernel.sh
-
 
 	zip -r9 "$ZIPNAME" * -x .git README.md anykernel-real.sh .gitignore zipsigner* *.zip
 
