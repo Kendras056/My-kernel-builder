@@ -56,7 +56,7 @@ DEFCONFIG=X00TD_defconfig
 MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
-NAMA=TheOneMemory
+NAMA=EW
 JENIS=PRIVATE
 VARIAN=HMP
 
@@ -141,7 +141,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	if [ $COMPILER = "clang" ]
 	then
 		msg "|| Cloning toolchain ||"
-		git clone --depth=1 https://github.com/kdrag0n/proton-clang -b master clang
+		git clone --depth=1 https://github.com/Kneba/venom-clang -b master clang
 
 	elif [ $COMPILER = "gcc49" ]
 	then
@@ -205,6 +205,8 @@ exports() {
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 		PATH=$TC_DIR/bin/:$PATH
+		LLD_VER="$("$TC_DIR"/bin/ld.lld --version | head -n 1)"
+		export KBUILD_COMPILER_STRING="$KBUILD_COMPILER_STRING with $LLD_VER"
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
