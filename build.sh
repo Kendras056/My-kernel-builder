@@ -66,7 +66,7 @@ BUILD_TYPE="Nightly"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49'
-COMPILER=gcc
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="don't blame me if u get poor battery backup or weak performance . i'm not responsible . Do with Your Own Risk."
@@ -142,7 +142,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	if [ $COMPILER = "clang" ]
 	then
 		msg "|| Cloning toolchain ||"
-		git clone --depth=1 https://github.com/Kneba/venom-clang.git -b master clang
+		git clone --depth=1 https://github.com/kdrag0n/proton-clang.git -b master clang
 
 	elif [ $COMPILER = "gcc49" ]
 	then
