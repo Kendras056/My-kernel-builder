@@ -59,7 +59,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 NAMA=Electro
 JENIS=Wizard
 VARIAN=EAS
-KERNELVER=LV
+KERNELVER=NLV
 
 # Build Type
 BUILD_TYPE="Nightly"
@@ -187,7 +187,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 # Function to replace defconfig versioning
 setversioning() {
     # For staging branch
-    KERNELNAME="$NAMA-$VARIAN-$KERNELVER"
+    KERNELNAME="$NAMA-$JENIS-$VARIAN-$KERNELVER"
     # Export our new localversion and zipnames
     export KERNELNAME
     export ZIPNAME="$KERNELNAME.zip"
@@ -198,7 +198,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="queen"
     export KBUILD_BUILD_HOST="18ded16aaef9"
-    export KBUILD_BUILD_VERSION="1"
+    export KBUILD_BUILD_VERSION="3"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
