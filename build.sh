@@ -57,7 +57,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 
 # Kernel Variant
 NAMA=EW
-JENIS=LV
+JENIS=NLV
 VARIAN=HMP
 ANU=CAF
 
@@ -133,8 +133,8 @@ LINUXVER=$(make kernelversion)
 COMMIT_HEAD=$(git log --pretty=format:'%s' -n1)
 
 # Set Date
-DATE=$(TZ=Asia/Jakarta date +"%Y%m%d_%H%M")
-DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
+DATE=$(TZ=Europe/Moscow date +"%Y%m%d_%H%M")
+DATE2=$(TZ=Europe/Moscow date +"%Y%m%d")
 #Now Its time for other stuffs like cloning, exporting, etc
 
  clone() {
@@ -198,7 +198,7 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER="queen"
 	export KBUILD_BUILD_HOST="18ded16aaef9"
-	export KBUILD_BUILD_VERSION="2"
+	export KBUILD_BUILD_VERSION="1"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
