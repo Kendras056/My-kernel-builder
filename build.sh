@@ -196,7 +196,7 @@ setversioning() {
 ##--------------------------------------------------------------##
 
 exports() {
-	export KBUILD_BUILD_USER="D3A"
+	export KBUILD_BUILD_USER="morbid"
 	export KBUILD_BUILD_VERSION="1"
 	export ARCH=arm64
 	export SUBARCH=arm64
