@@ -133,8 +133,8 @@ LINUXVER=$(make kernelversion)
 COMMIT_HEAD=$(git log --pretty=format:'%s' -n1)
 
 # Set Date
-DATE=$(TZ=Asia/Kalimantan date +"%Y%m%d_%H%M")
-DATE2=$(TZ=Asia/Kalimantan date +"%Y%m%d")
+DATE=$(TZ=Asia/Jayapura date +"%Y%m%d_%H%M")
+DATE2=$(TZ=Asia/Jayapura date +"%Y%m%d")
 #Now Its time for other stuffs like cloning, exporting, etc
 
  clone() {
