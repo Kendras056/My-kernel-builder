@@ -59,7 +59,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 NAMA=TOM
 JENIS=NLV
 VARIAN=EAS
-ANU=OC
+ANU=Onyx
 
 # Build Type
 BUILD_TYPE="Nightly"
@@ -173,7 +173,7 @@ DATE2=$(TZ=Europe/Moscow date +"%Y%m%d")
 		GCC32_DIR=$KERNEL_DIR/gcc32
 
 	msg "|| Cloning Anykernel ||"
-        git clone https://github.com/Tiktodz/AnyKernel3.git -b main AnyKernel3
+        git clone https://github.com/Kneba/AnyKernel3.git -b eas AnyKernel3
 
 	if [ $BUILD_DTBO = 1 ]
 	then
