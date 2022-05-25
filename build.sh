@@ -398,10 +398,10 @@ gen_zip() {
 	fi
 	cd AnyKernel3 || exit
 	cp -af anykernel-real.sh anykernel.sh
-	sed -i "s/kernel.string=.*/kernel.string=$NAMA-$ANU/g" anykernel.sh
-	sed -i "s/kernel.for=.*/kernel.for=$VARIAN/g" anykernel.sh
+	sed -i "s/kernel.string=.*/kernel.string=$ANU/g" anykernel.sh
+	sed -i "s/kernel.for=.*/kernel.for=$VARIAN-$JENIS/g" anykernel.sh
 	sed -i "s/kernel.compiler=.*/kernel.compiler=$KBUILD_COMPILER_STRING/g" anykernel.sh
-	sed -i "s/kernel.made=.*/kernel.made=Tiktod/g" anykernel.sh
+	sed -i "s/kernel.made=.*/kernel.made=Kneba/g" anykernel.sh
 	sed -i "s/kernel.version=.*/kernel.version=$LINUXVER/g" anykernel.sh
 	sed -i "s/message.word=.*/message.word=$MESSAGE/g" anykernel.sh
 	sed -i "s/build.date=.*/build.date=$DATE2/g" anykernel.sh
