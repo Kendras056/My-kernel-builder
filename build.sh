@@ -59,7 +59,7 @@ MANUFACTURERINFO="ASUSTek Computer Inc."
 NAMA=TOM
 JENIS=NLV
 VARIAN=EAS
-ANU=Onyx
+ANU=Hayzel
 
 # Build Type
 BUILD_TYPE="Nightly"
@@ -187,7 +187,7 @@ DATE2=$(TZ=Asia/Jayapura date +"%Y%m%d")
 # Function to replace defconfig versioning
 setversioning() {
     # For staging branch
-    KERNELNAME="$NAMA-$JENIS-$VARIAN-$ANU-$LINUXVER"
+    KERNELNAME="$NAMA-$ANU-$VARIAN-$JENIS-$LINUXVER"
     # Export our new localversion and zipnames
     export KERNELNAME
     export ZIPNAME="$KERNELNAME.zip"
